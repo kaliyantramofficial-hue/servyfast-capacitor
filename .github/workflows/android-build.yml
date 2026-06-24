@@ -7,6 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: project
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -19,13 +23,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Check Android Folder
-        run: ls -la
-
       - name: Sync Capacitor
         run: npx cap sync android
 
-      - name: Build Android Bundle
+      - name: Build Android AAB
         run: |
           cd android
           chmod +x gradlew
@@ -35,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: servyfast-aab
-          path: android/app/build/outputs/bundle/release/*.aab
+          path: project/android/app/build/outputs/bundle/release/*.aab
