@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyServyFast</string>
+    <string name="title_activity_main">MyServyFast</string>
+    <string name="package_name">com.myservyfast.app</string>
+    <string name="custom_url_scheme">myservyfast</string>
+    <string name="deep_link_host">myservyfast.com</string>
+    <string name="fb_app_id"></string>
+    <string name="default_notification_channel_id" translatable="false">myservyfast_default</string>
+    <string name="default_notification_channel_name">MyServyFast Notifications</string>
+    <string name="default_notification_channel_description">Notifications from MyServyFast app</string>
+</resources>
