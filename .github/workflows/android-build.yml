@@ -20,6 +20,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
       - name: Install Dependencies
         run: npm install
 
@@ -28,9 +34,13 @@ jobs:
 
       - name: Build Android AAB
         run: |
+          pwd
+          ls -la
+          ls -la android
           cd android
           chmod +x gradlew
-          ./gradlew bundleRelease
+          ./gradlew --version
+          ./gradlew bundleRelease --stacktrace
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
