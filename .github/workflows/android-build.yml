@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -29,19 +29,19 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Create Capacitor Assets Directory
+        run: |
+          mkdir -p android/app/src/main/assets
+          mkdir -p android/app/src/main/res
+
       - name: Sync Capacitor
         run: npx cap sync android
 
       - name: Build Android AAB
-  run: |
-    pwd
-    ls -la
-    ls -la android
-    cd android
-    chmod +x gradlew
-    ls -la
-    cat gradle/wrapper/gradle-wrapper.properties
-    ./gradlew --version --no-daemon
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew bundleRelease --stacktrace --no-daemon
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
